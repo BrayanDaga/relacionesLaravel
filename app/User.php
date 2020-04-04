@@ -47,4 +47,9 @@ class User extends Authenticatable
         return $this->belongsTo(Level::class); //Pertenece  a un Nivel
     }
 
+    public function groups()
+    {
+        return $this->belongsToMany(Group::class)->withTimestamps();
+    }
+
 }

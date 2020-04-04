@@ -26,6 +26,9 @@ class AddLevelIdAtUsers extends Migration
      */
     public function down()
     {
-        //
+        Schema::table('users', function(Blueprint $table) {
+            $table->dropForeign('users_level_id_foreign'); // tabla_campo_foreign
+            $table->dropColumn('level_id');
+        });
     }
 }
