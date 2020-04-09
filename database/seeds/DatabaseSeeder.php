@@ -25,7 +25,7 @@ class DatabaseSeeder extends Seeder
             
             $profile->location()->save(factory(App\Location::class)->make());
             
-            $profile->groups()->attachj($this->array(rand(1,3)));
+            $user->groups()->attach($this->array(rand(1,3)));
             
             $user->image()->save(factory(App\Image::class)->make(['url' =>
             'https://lorempixel.com/90/90']));
