@@ -18,6 +18,14 @@ Route::get('/', function () {
 
 Route::get('/profile/{id}', function ($id) {
     $user = App\User::find($id);
+    
+    $posts = $user->posts()
+    ->with('category','image','tags')
+    ->withCount('comments')->get();
+    
+    $videos = $user->videos()
+    ->with('category','image','tags')
+    ->withCount('comments')->get();
     //dd($user->name);
-    return view('profile', compact('user'));
+    return view('profile', compact('user','posts','videos'));
 })->name('profile');
