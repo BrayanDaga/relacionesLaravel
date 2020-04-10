@@ -15,3 +15,9 @@ Route::get('/', function () {
     $users = App\User::get();
     return view('welcome',compact('users'));
 });
+
+Route::get('/profile/{id}', function ($id) {
+    $user = App\User::find($id);
+    //dd($user->name);
+    return view('profile', compact('user'));
+})->name('profile');
