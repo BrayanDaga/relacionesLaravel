@@ -29,3 +29,17 @@ Route::get('/profile/{id}', function ($id) {
     //dd($user->name);
     return view('profile', compact('user','posts','videos'));
 })->name('profile');
+
+Route::get('/level/{id}', function ($id) {
+    $level = App\Level::find($id);
+    
+    $posts = $level->posts()
+    ->with('category','image','tags')
+    ->withCount('comments')->get();
+    
+    $videos = $level->videos()
+    ->with('category','image','tags')
+    ->withCount('comments')->get();
+    //dd($user->name);
+    return view('level', compact('level','posts','videos'));
+})->name('level');
